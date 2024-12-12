@@ -29,8 +29,8 @@ if(isset($_POST['submit'])){
             </div>
             <nav class="mt-4">
                 <a href="#" class="block py-2 px-4 hover:bg-green-700 rounded-lg mt-2">Client</a>
-                <a href="#" class="block py-2 px-4 hover:bg-green-700 rounded-lg mt-2">Reservation</a>
-                <a href="#" class="block py-2 px-4 hover:bg-green-700 rounded-lg mt-2">Activities</a>
+                <a href="reservation.php" class="block py-2 px-4 hover:bg-green-700 rounded-lg mt-2">Reservation</a>
+                <a href="activities.php" class="block py-2 px-4 hover:bg-green-700 rounded-lg mt-2">Activities</a>
             </nav>
         </aside>
 
@@ -72,9 +72,9 @@ if(isset($_POST['submit'])){
       </div>
 
       <div class="flex justify-center">
-        <button name="submit" type="submit" class="px-6 py-3 bg-custom-green text-white font-semibold rounded-md shadow-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-custom-green">
-          Soumettre
-        </button>
+      <button name="submit" type="submit" class="px-6 py-3 bg-[#183E0C] text-white font-semibold rounded-md shadow-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-600">
+              Soumettre
+            </button>
       </div>
     </form>
 
