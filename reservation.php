@@ -7,7 +7,23 @@
     <title> Voyages</title>
 </head>
 <body class="bg-gray-100 font-sans">
-    <?php ?>
+<?php
+    include('ConfigDB.php');
+     ?>
+  <?php
+  if(isset($_POST['kkk'])){
+    $seleClient = $_POST['seleClient'];
+    $seleActivity = $_POST['seleActivity'];
+    $date_reservation = $_POST['date_reservation'];
+    $statut_reservation = $_POST['statut_reservation'];
+    $nombre_personnes = $_POST['nombre_personnes'];
+    $reserv="INSERT INTO reservation (id_client ,id_activite, date_reservation,nombre_personnes,status_reservation )
+     VALUES('$seleClient','$seleActivity','$date_reservation','$nombre_personnes','$statut_reservation'); "; 
+    $result=mysqli_query($conn,$reserv);
+}
+  ?> 
+
+   
     <div class="flex h-screen">
         <!-- Sidebar -->
         <aside class="w-64 bg-[#183E0C] text-white">
@@ -33,18 +49,63 @@
             </header>
             <div id="popupReservation" class="fixed inset-0 bg-gray-500 bg-opacity-50 flex justify-center items-center hidden">
   <div class="w-full max-w-lg p-8 bg-white rounded-lg shadow-lg relative">
+     
+    <?php
+      $tabCLT = "SELECT nom_client,id_client from clients ";
+      $allclt = mysqli_query($conn,$tabCLT);
+      ?>
     <h2 class="text-2xl font-semibold text-center text-[#183E0C] mb-6">Créer une Réservation</h2>
     <form method="POST" class="space-y-6">
       <div>
-        <label for="id_client" class="block text-lg font-medium text-gray-700">Client</label>
-        <input type="number" id="id_client" name="id_client" required 
-          class="mt-2 p-3 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-600">
+        <label for="sele" class="block text-lg font-medium text-gray-700">clients</label>
+        <select name="seleClient" id="">
+          <option value="" id="sele">chose </option>
+          <?php 
+                   $tabCLT = "SELECT nom_client,id_client from clients ";
+                   $allclt = mysqli_query($conn,$tabCLT); 
+                            foreach($allclt as $row){
+                                $nom = htmlspecialchars($row['nom_client']);
+                                $id_client = htmlspecialchars($row['id_client']);
+                               
+
+                                echo "
+                                     
+                                        <option value='$id_client'>$nom</option>
+                                    
+                                      </div>";
+
+                            }
+                           
+                            ?>
+                            </select>
+     
       </div>
 
       <div>
         <label for="id_activite" class="block text-lg font-medium text-gray-700">Activité</label>
-        <input type="number" id="id_activite" name="id_activite" required 
-          class="mt-2 p-3 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-600">
+        
+         <?php
+         include("ConfigDB.php");
+         $tabActv="SELECT 	id_activites,nom_activite from activites";
+         $allactv=mysqli_query($conn,$tabActv);
+
+         ?>
+         <select name="seleActivity" id="">
+           <?php 
+                           
+                            foreach($allactv as $row){
+                                $nom_activite = htmlspecialchars($row['nom_activite']);
+                                $id_activites =htmlspecialchars($row['id_activites']);
+                                
+                                echo "
+                                     
+                                        <option value='$id_activites'>$nom_activite</option>
+                                    
+                                      </div>";
+                            }
+                            ?>
+          </select>
+          
       </div>
 
       <div>
@@ -65,11 +126,12 @@
           class="mt-2 p-3 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-600">
           <option value="Confirmée" selected>Confirmée</option>
           <option value="Annulée">Annulée</option>
+          <option value="attente">attente</option>
         </select>
       </div>
 
       <div class="flex justify-center">
-        <button name="submit" type="submit" class="px-6 py-3 bg-[#183E0C] text-white font-semibold rounded-md shadow-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-600">
+        <button name="kkk" type="submit" class="px-6 py-3 bg-[#183E0C] text-white font-semibold rounded-md shadow-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-600">
           Soumettre
         </button>
       </div>
@@ -88,9 +150,14 @@
             <!-- Dashboard Content -->
             <main class="p-6">
                 <h1 class="text-2xl font-bold mb-6 text-[#183E0C]"> Dashboard</h1>
+                <?php 
+    $tabRes = "SELECT id_reservation, nom_client, nom_activite, date_reservation, nombre_personnes, status_reservation 
+               FROM reservation
+               INNER JOIN clients ON reservation.id_client = clients.id_client
+               INNER JOIN activites ON reservation.id_activite = activites.id_activites";
 
-               
-
+    $result = mysqli_query($conn, $tabRes);
+?>
                 <!-- User Table -->
                 <div class="bg-white shadow-md rounded-lg">
                     <table class="w-full table-auto">
@@ -105,14 +172,29 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- Repeat rows as needed -->
-                            <tr class="border-t ">
-                                <td class="px-4 py-2">Software Engineer</td>
-                                <td class="px-4 py-2">Software Engineer</td>
-                                <td class="px-4 py-2 text-green-500">0617151277</td>
-                                <td class="px-4 py-2 text-indigo-500 ">29-08-2023</td>
-                                <td class="px-4 py-2 text-indigo-500  flex justify-center ">confirmer</td>
-                            </tr>
+                        <?php 
+   
+    while ($row = mysqli_fetch_assoc($result)) {
+        $nom = htmlspecialchars($row['nom_client']);
+        $email = htmlspecialchars($row['nom_activite']);
+        $telephone = htmlspecialchars($row['date_reservation']);
+        $date_inscription = htmlspecialchars($row['nombre_personnes']);
+        $date_resserv = htmlspecialchars($row['status_reservation']);
+        
+        echo "<tr class='border-t'>
+            <td class='px-4 py-2 flex items-center'>
+                <div>
+                    <p>$nom</p>
+                </div>
+            </td>
+            <td class='px-4 py-2'>$email</td>
+            <td class='px-4 py-2 text-green-500'>$telephone</td>
+            <td class='px-4 py-2 text-indigo-500'>$date_inscription</td>
+            <td class='px-4 py-2 text-indigo-500'>$date_resserv</td>
+        </tr>";
+    }
+?>
+
                             <!-- Repeat as needed -->
                         </tbody>
                     </table>

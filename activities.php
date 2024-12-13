@@ -66,11 +66,7 @@
               class="mt-2 p-3 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-600"></textarea>
           </div>
 
-          <div>
-            <label for="type_activite" class="block text-lg font-medium text-gray-700">Type d'activité</label>
-            <input type="text" id="type_activite" name="type_activite" 
-              class="mt-2 p-3 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-600">
-          </div>
+          
 
           <div>
             <label for="prix" class="block text-lg font-medium text-gray-700">Prix </label>
@@ -119,7 +115,7 @@
                             <tr class="bg-gray-100">
                                 <th class="px-4 py-2 text-left">Name of activity</th>
                                 <th class="px-4 py-2 text-left">Description</th>
-                                <th class="px-4 py-2 text-left">Type of Activity</th>
+                                <
                                 <th class="px-4 py-2 text-left">Price</th>
                                 <th class="px-4 py-2 text-left">Date Disponible</th>
                                 <th class="px-4 py-2 text-left">Places Disponible</th>
@@ -146,7 +142,7 @@
                                     </div>
                                 </td>
                                 <td class='px-4 py-2'>$description</td>
-                                <td class='px-4 py-2 text-indigo-500'> $type_activites</td>
+                                
                                 <td class='px-4 py-2 text-green-500 '>$prix</td>
                                 <td class='px-4 py-2 text-indigo-500'> $date_disponible</td>
                                 <td class='px-4 py-2 text-indigo-500'>  $places_disponible</td>
