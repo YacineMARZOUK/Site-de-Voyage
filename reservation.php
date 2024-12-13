@@ -109,24 +109,24 @@
       </div>
 
       <div>
-        <label for="date_reservation" class="block text-lg font-medium text-gray-700">Date de Réservation</label>
+        <label for="date_reservation" class="block text-lg font-medium text-gray-700">Date of Reservation</label>
         <input type="date" id="date_reservation" name="date_reservation" required 
           class="mt-2 p-3 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-600">
       </div>
 
       <div>
-        <label for="nombre_personnes" class="block text-lg font-medium text-gray-700">Nombre de Personnes</label>
+        <label for="nombre_personnes" class="block text-lg font-medium text-gray-700">Nombre of Person</label>
         <input type="number" id="nombre_personnes" name="nombre_personnes" min="1" required 
           class="mt-2 p-3 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-600">
       </div>
 
       <div>
-        <label for="statut_reservation" class="block text-lg font-medium text-gray-700">Statut de Réservation</label>
+        <label for="statut_reservation" class="block text-lg font-medium text-gray-700">Statut of Reservation</label>
         <select id="statut_reservation" name="statut_reservation" 
           class="mt-2 p-3 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-600">
-          <option value="Confirmée" selected>Confirmée</option>
-          <option value="Annulée">Annulée</option>
-          <option value="attente">attente</option>
+          <option value="Confirmée" selected>Confirmed</option>
+          <option value="Annulée">Canceled</option>
+          <option value="attente">Pending</option>
         </select>
       </div>
 
@@ -163,12 +163,11 @@
                     <table class="w-full table-auto">
                         <thead>
                             <tr class="bg-gray-100">
-                                <th class="px-4 py-2 text-left">id of Reservation</th>
-                                <th class="px-4 py-2 text-left">id of Client</th>
+                                <th class="px-4 py-2 text-left">Name of Client</th>
+                                <th class="px-4 py-2 text-left">Name of Activity</th>
                                 <th class="px-4 py-2 text-left">id of ACTIVITES</th>
-                                <th class="px-4 py-2 text-left">Date of registration</th>
-                                <th class="px-4 py-2 text-left">Nomber of person</th>
-                                <th class="px-4 py-2">status de Reservation</th>
+                                <th class="px-4 py-2 text-left">Nombre of Person</th>
+                                <th class="px-4 py-2 text-left">Statut of Reservation</th>
                             </tr>
                         </thead>
                         <tbody>
